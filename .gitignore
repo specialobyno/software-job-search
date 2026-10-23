@@ -1,0 +1,8 @@
+.DS_Store
+__pycache__/
+*.pyc
+.claude/settings.local.json
+# Never commit these, even if they end up in the repo
+intake/private/
+*.key
+.env

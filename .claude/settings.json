@@ -1,0 +1,50 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(pdftotext:*)",
+      "Bash(pdfinfo:*)",
+      "Bash(pdffonts:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(python3 .claude/skills/status/scripts/build_tracker.py:*)",
+      "Bash(python3 .claude/skills/apply/scripts/lint_forms.py:*)",
+      "Bash(python3 .claude/skills/onboard-me/scripts/profile_check.py:*)",
+      "Bash(python3 -I .claude/skills/onboard-me/scripts/extract_text.py:*)",
+      "Bash(.claude/skills/cv-pdf/scripts/build_cv.sh:*)",
+      "WebSearch",
+      "WebFetch(domain:api.ashbyhq.com)",
+      "WebFetch(domain:jobs.ashbyhq.com)",
+      "WebFetch(domain:boards-api.greenhouse.io)",
+      "WebFetch(domain:boards-api.eu.greenhouse.io)",
+      "WebFetch(domain:job-boards.greenhouse.io)",
+      "WebFetch(domain:api.lever.co)",
+      "WebFetch(domain:jobs.lever.co)",
+      "WebFetch(domain:api.smartrecruiters.com)",
+      "WebFetch(domain:remoteok.com)",
+      "WebFetch(domain:remotive.com)",
+      "WebFetch(domain:himalayas.app)",
+      "WebFetch(domain:hn.algolia.com)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/skills/apply/scripts/lint_forms.py\" --hook"
+          }
+        ]
+      }
+    ]
+  }
+}

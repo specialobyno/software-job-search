@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "names": {
+    "first_name": "",
+    "middle_name": "",
+    "last_name": "",
+    "preferred_name": "",
+    "full_name": ""
+  },
+  "pronouns": "",
+  "nationality": "",
+  "date_of_birth": "",
+  "contact": {
+    "email": "",
+    "phone": "",
+    "city": "",
+    "region": "",
+    "country": "",
+    "postcode": "",
+    "street_address": "",
+    "linkedin": "",
+    "github": "",
+    "website": ""
+  },
+  "right_to_work": {
+    "statement": "",
+    "citizenships": [],
+    "authorised_in": [],
+    "needs_sponsorship_for": [],
+    "willing_to_relocate": false,
+    "relocation_countries": []
+  },
+  "availability": {
+    "statement": "",
+    "notice_period": "",
+    "earliest_start": "",
+    "never_say": []
+  },
+  "salary": {
+    "currency": "EUR",
+    "period": "year",
+    "default": 0,
+    "minimum": 0,
+    "notes": ""
+  },
+  "experience": {
+    "since": "",
+    "years_statement": ""
+  },
+  "targets": {
+    "titles": [],
+    "seniority": [],
+    "role_types": [],
+    "core_stack": [],
+    "also_capable": [],
+    "domains_preferred": [],
+    "domains_avoid": [],
+    "employment_types": ["full-time"],
+    "work_modes": ["remote", "hybrid"],
+    "locations": [],
+    "remote_regions": [],
+    "timezone_overlap": "",
+    "exclude_companies": [],
+    "deal_breakers": [],
+    "ask_before": [],
+    "applications_per_week": 10
+  },
+  "languages": [],
+  "career_history": [],
+  "side_projects": [],
+  "education": [],
+  "certifications": [],
+  "standard_answers": {
+    "gender": "Prefer not to say",
+    "ethnicity": "Prefer not to say",
+    "disability": "Prefer not to say",
+    "veteran_status": "Prefer not to say",
+    "criminal_record": "",
+    "how_did_you_hear": "Company careers page",
+    "references": "Available on request",
+    "willing_to_travel": "",
+    "security_clearance": "",
+    "biggest_strength": "",
+    "default_challenging_problem": ""
+  },
+  "writing": {
+    "tone": "",
+    "avoid": [],
+    "notes": ""
+  },
+  "cv_rules": {
+    "file_prefix": "",
+    "must_contain": [],
+    "required_headings": ["Experience", "Education"],
+    "banned_terms": [],
+    "warn_terms": [],
+    "page_size": "A4"
+  },
+  "job_search": {
+    "regions": [],
+    "gmail_connected": false
+  },
+  "onboarding": {
+    "started": "",
+    "completed": "",
+    "last_run": "",
+    "runs": 0,
+    "sections_done": [],
+    "open_questions": []
+  }
+}

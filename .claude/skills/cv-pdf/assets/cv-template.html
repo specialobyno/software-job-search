@@ -1,0 +1,169 @@
+<!doctype html>
+<!--
+  CV TEMPLATE — reference design for the cv-pdf skill.
+  Content below is CV 20 (Backend Engineer, Event-Driven, AWS); replace it, keep the structure:
+    header: h1 name · .headline · two .contact lines (plain-text links)
+    sections (h2, in this order): Professional Summary · Core Skills (labelled <p> rows) ·
+      Professional Experience (.role > .role-head [title — company | dates] + .org-line + ul) ·
+      Notable Projects · Education (.row title | dates) · Certifications · Languages
+  ATS rules: one column, no <table>, no images/icons, real <ul><li> bullets, title before dates in the DOM.
+  Build: .claude/skills/cv-pdf/scripts/build_cv.sh CV/source/<name>.html CV/<name>.pdf
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{FULL_NAME}} — {{HEADLINE_ROLE}}</title>
+<style>
+  @page { size: A4; margin: 14mm 15mm 14mm 15mm; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9.6pt;
+    line-height: 1.38;
+    color: #1f2328;
+    font-variant-ligatures: none;   /* keep "fi"/"fl" as separate letters for ATS keyword matching */
+    hyphens: manual;                /* never auto-hyphenate keywords */
+  }
+  a { color: inherit; text-decoration: none; }
+
+  header { margin-bottom: 9pt; }
+  h1 {
+    font-size: 21pt;
+    font-weight: 700;
+    letter-spacing: 0.2pt;
+    margin: 0 0 2pt 0;
+    color: #0b3a5b;
+  }
+  .headline {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #1f2328;
+    margin: 0 0 4pt 0;
+  }
+  .contact { font-size: 9.2pt; color: #3d444d; margin: 0; }
+  .contact span + span::before { content: " | "; color: #8c959f; }
+
+  h2 {
+    font-size: 10.4pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8pt;
+    color: #0b3a5b;
+    margin: 11pt 0 5pt 0;
+    padding-bottom: 2pt;
+    border-bottom: 1.2pt solid #0b3a5b;
+    break-after: avoid;             /* never strand a heading at the bottom of a page */
+  }
+  p { margin: 0 0 4pt 0; }
+
+  .skills p { margin: 0 0 2.6pt 0; }
+  .skills strong { color: #0b3a5b; }
+
+  .role { margin-bottom: 7pt; }   /* long roles may split across pages, but only between bullets */
+  .role-head, .org-line { break-after: avoid; }   /* keep the role title with its first bullet */
+  li { break-inside: avoid; }
+  .role-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10pt;
+  }
+  .role-title { font-weight: 700; font-size: 10.2pt; }
+  .dates { font-weight: 700; white-space: nowrap; font-size: 9.4pt; }
+  .org-line { font-style: italic; color: #3d444d; margin: 0 0 2.5pt 0; }
+
+  ul { margin: 0; padding-left: 13pt; }
+  li { margin: 0 0 2.4pt 0; padding-left: 1pt; }
+
+  .projects li, .edu li { margin-bottom: 3pt; }
+  .edu .row { display: flex; justify-content: space-between; gap: 10pt; margin-bottom: 2.5pt; }
+  .edu .row span:first-child strong { font-weight: 700; }
+  .inline-list { margin: 0; }
+</style>
+</head>
+<body>
+<!--
+  Software-engineering CV template. Replace every {{PLACEHOLDER}} (build_cv.sh fails while any remain).
+  ATS rules: one column, no tables, no icons, no text in images; h1 = name; h2 = standard section titles
+  (Professional Summary, Core Skills, Professional Experience, Notable Projects, Education, Certifications, Languages);
+  role line = "Title — Company" then dates; real <ul><li> bullets; labelled skill rows; links as visible text.
+  Drop a section rather than leave it thin, but keep "Experience" and "Education" in some heading.
+-->
+
+<header>
+  <h1>{{FULL_NAME}}</h1>
+  <p class="headline">{{HEADLINE}}</p>
+  <p class="contact">
+    <span><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></span><span>{{PHONE}}</span><span>{{CITY, COUNTRY}}</span>
+  </p>
+  <p class="contact">
+    <span><a href="https://{{LINKEDIN}}">{{LINKEDIN}}</a></span><span><a href="https://{{GITHUB}}">{{GITHUB}}</a></span><span><a href="https://{{WEBSITE}}">{{WEBSITE}}</a></span>
+  </p>
+</header>
+
+<section>
+  <h2>Professional Summary</h2>
+  <p>{{3–5 sentences: who they are, years of experience, domain, strongest results, what they are looking for.}}</p>
+</section>
+
+<section class="skills">
+  <h2>Core Skills</h2>
+  <p><strong>{{Skill group}}:</strong> {{skill}}, {{skill}}, {{skill}}</p>
+  <p><strong>{{Skill group}}:</strong> {{skill}}, {{skill}}, {{skill}}</p>
+  <p><strong>Tools:</strong> {{tool}}, {{tool}}</p>
+</section>
+
+<section>
+  <h2>Professional Experience</h2>
+
+  <div class="role">
+    <div class="role-head">
+      <span class="role-title">{{Job Title}} — {{Organisation}}</span>
+      <span class="dates">{{Month YYYY}} – {{Month YYYY}}</span>
+    </div>
+    <p class="org-line">{{What the organisation does}} · {{City or Remote}}</p>
+    <ul>
+      <li>{{Achievement: action + scope + result}}</li>
+      <li>{{Achievement}}</li>
+      <li>{{Achievement}}</li>
+    </ul>
+  </div>
+
+  <div class="role">
+    <div class="role-head">
+      <span class="role-title">{{Job Title}} — {{Organisation}}</span>
+      <span class="dates">{{Month YYYY}} – {{Month YYYY}}</span>
+    </div>
+    <p class="org-line">{{What the organisation does}} · {{City}}</p>
+    <ul>
+      <li>{{Achievement}}</li>
+      <li>{{Achievement}}</li>
+    </ul>
+  </div>
+</section>
+
+<section class="projects">
+  <h2>Notable Projects</h2>
+  <ul>
+    <li><strong>{{Project}}</strong> — {{one line on what it was and the result}}</li>
+  </ul>
+</section>
+
+<section class="edu">
+  <h2>Education</h2>
+  <div class="row"><span><strong>{{Degree}}</strong> — {{Institution}}</span><span>{{YYYY – YYYY}}</span></div>
+</section>
+
+<section>
+  <h2>Certifications</h2>
+  <p class="inline-list">{{Certification}} · {{Certification}}</p>
+</section>
+
+<section>
+  <h2>Languages</h2>
+  <p class="inline-list">{{Language}} — {{Level}} · {{Language}} — {{Level}}</p>
+</section>
+
+</body>
+</html>
